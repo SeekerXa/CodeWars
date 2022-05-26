@@ -19,8 +19,30 @@ namespace Task4
 
         public static int DontGiveMeFive(int start, int end)
         {
-            return 0;
+            var count = 0;
+            for (int i = start; i <= end; i++)
+            {
+                var hasfive = false;
+                var tempString = i.ToString();
+                
+                foreach (char c in tempString)
+                {
+                    if(c == '5') { hasfive = true; break; }
+                }
+                if(!hasfive) count++;
+            }
+            return count;
+
+
+           // return Enumerable.Range(start, end - start + 1).Count(x => !x.ToString().Contains("5"));
+
+           // return Enumerable.Range(start,end-start+1).Where(x => !x.ToString().Contains("5")).Count();
+
+
+
         }
 
     }
+
+
 }
