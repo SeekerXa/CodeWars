@@ -28,46 +28,81 @@ namespace The_Deaf_Rats_of_Hamelin
         //    01234567890
         //ex3 ~O~O~O~OP~O~OO~has 2 deaf rats
 
-        public static int FindPair(string town)
+        public static int FindingDeafRats(string town, int pPos)
         {
-            if (town.Length > 1)
+
+            var count = 0;
+            if (town.Length > 2)
             {
-                var case1 = "P~";
-                var case2 = "~P";
-                for (int i = 0; i < town.Length; i++)
+                if (pPos == 0)
                 {
-                    if (((town[i] + town[i + 1]) == case1) || (town[i] + town[i + -1] == case2))  )
+                    count = town[pPos + 1] == '~' ? count + 1 : count = 0;
+                    town = town.Remove(pPos + 1, 2);
                 }
+                else
+                {
+                    count = town[pPos - 1] == '~' ? count + 1 : count = 0;
+                    town = town.Remove(pPos - 2, 2);
 
-
-                return 0;
+                }
+                return count + FindingDeafRats(town, FindP(town));
             }
+            return 0;
         }
+        public static int FindP(string town)
+        {
+            for (int i = 0; i < town.Length; i++)
+            {
+                if (town[i] == 'P') return i;
 
+            }
+            return 0;
+        }
         public static int CountDeafRats(string town)
         {
-            int startPos = 0;
+
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < town.Length; i++)
             {
-                if (town[i] == '0' || town[i] == '~' || town[i] == 'P')
+                if (town[i] == 'O' || town[i] == '~' || town[i] == 'P')
                 {
                     sb.Append(town[i]);
-                    if (town[i] != 'P') startPos++;
                 }
-
             }
-
             town = sb.ToString();
 
-
-
-
-            return 0;
-            // Your code here
+            return FindingDeafRats(town, FindP(town));
 
         }
+
+
+
+        // best 
+
+
+
+        //public static int CountDeafRats(string town)
+        //{
+        //    var rats = town.Replace(" ", "").Split('P');
+        //    var leftCount = rats[0].Where((x, i) => i % 2 == 1).Count(x => x == '~');
+        //    var rightCount = rats[1].Where((x, i) => i % 2 == 0).Count(x => x == '~');
+        //    return leftCount + rightCount;
+        //}
+
+
+        //public static int CountDeafRats(string town)
+        //{
+        //    return town
+        //            .Replace(" ", "")
+        //            .Where((x, i) => i % 2 == 0)
+        //            .Count(x => x == 'O');
+        //}
+
+
+
     }
-}
-}
+
+
+
+
 }
