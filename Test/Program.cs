@@ -24,11 +24,12 @@ public class Dinglemouse
 
     static void Main()
     {
-          
+
 
         string ex1 = "~O~O~O~O";
         string ex2 = "P O~ O~ ~O O~";
         string ex3 = "~O~O~O~OP~O~OO~";
-        CountDeafRats(ex2);
+       // CountDeafRats(ex2);
         CountDeafRats1(ex2);
+    }
 }
